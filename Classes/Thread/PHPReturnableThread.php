@@ -46,7 +46,8 @@ class Threadi_Thread_PHPReturnableThread extends Threadi_Thread_PHPThread implem
             // child process
             // 1 register callback for kill
             pcntl_signal( SIGTERM, array( $this, 'signalHandler' ) ); 
-            $this->communication->set('result',$this->executeCallback($this->callback, func_get_args()));
+			$args = func_get_args();
+            $this->communication->set('result',$this->executeCallback($this->callback, $args));
             exit( 0 );
         }
     }
